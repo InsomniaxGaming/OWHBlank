@@ -1,13 +1,13 @@
 package info.insomniax.owhblank.vault;
 
 import info.insomniax.owhblank.core.BukkitPlugin;
-import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.permission.Permission;
 
 import org.apache.commons.lang.StringUtils;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 
 public class Permissions {
@@ -24,7 +24,8 @@ public class Permissions {
 	
 	BukkitPlugin myPlugin;
 	public static Permission permission = null;
-	public static Economy economy = null;
+	
+	public boolean failed;
 	
 	public Permissions(BukkitPlugin instance)
 	{
@@ -44,6 +45,7 @@ public class Permissions {
         if (permissionProvider != null) {
             permission = permissionProvider.getProvider();
         }
+        failed = !(permission != null);
         return (permission != null);
     }
 	
@@ -74,7 +76,7 @@ public class Permissions {
 		if(sender instanceof ConsoleCommandSender)
 			return allowConsole;
 		
-		return permission.has(sender, getBaseNode() + ".commands." + command.getName());
+		return has(sender, command, new String[]{}, allowConsole);
 	}
 
 	/**
@@ -89,6 +91,8 @@ public class Permissions {
 	{
 		if(sender instanceof ConsoleCommandSender)
 			return allowConsole;
+		if(failed)
+			return ((Player)sender).isOp();
 		
 		return permission.has(sender, getBaseNode() + ".commands." + command.getName() + "." + StringUtils.join(args).toLowerCase());
 	}

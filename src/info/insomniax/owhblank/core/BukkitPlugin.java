@@ -20,12 +20,16 @@ public class BukkitPlugin extends JavaPlugin
 		//TODO setup plugin.yml
 		
 		p = new Permissions(this);
-		p.setupPermissions();
+		
+		if(p.setupPermissions())
+			this.getLogger().info("Permissions setup successful.");
+		else
+			this.getLogger().warning("Permissions setup failed, falling back to OP-only for any permissions");
 	}
 	
 	public void onDisable()
 	{
-		
+		this.saveConfig();
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
