@@ -17,6 +17,8 @@ public class BukkitPlugin extends JavaPlugin
 	
 	public void onEnable()
 	{
+		//TODO setup plugin.yml
+		
 		p = new Permissions(this);
 		p.setupPermissions();
 	}
