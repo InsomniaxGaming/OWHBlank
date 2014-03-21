@@ -2,6 +2,7 @@ package info.insomniax.owhblank.core;
 
 import info.insomniax.owhblank.vault.Permissions;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -32,9 +33,22 @@ public class BukkitPlugin extends JavaPlugin
 		this.saveConfig();
 	}
 	
+	public static void sendMessage(String player, String message)
+	{
+		Bukkit.getPlayer(player).sendMessage(message);
+	}
+	
+	public static void broadcast(String message)
+	{
+		Bukkit.broadcastMessage(message);
+	}
+	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args)
 	{
+		if(p.has(sender, cmd, false))
+		{
+			
+		}
 		return false;
 	}
-
 }

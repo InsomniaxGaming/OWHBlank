@@ -75,8 +75,10 @@ public class Permissions {
 	{
 		if(sender instanceof ConsoleCommandSender)
 			return allowConsole;
+		if(failed)
+			return ((Player)sender).isOp();
 		
-		return has(sender, command, new String[]{}, allowConsole);
+		return permission.has(sender, getBaseNode() + ".commands." + command.getName());
 	}
 
 	/**
