@@ -1,6 +1,6 @@
-package info.insomniax.owhblank.vault;
+package info.omgwtfhax.blank.vault;
 
-import info.insomniax.owhblank.core.BukkitPlugin;
+import info.omgwtfhax.blank.bukkit.BukkitPlugin;
 import net.milkbowl.vault.permission.Permission;
 
 import org.apache.commons.lang.StringUtils;

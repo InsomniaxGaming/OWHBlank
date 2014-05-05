@@ -1,6 +1,6 @@
-package info.insomniax.owhblank.core;
+package info.omgwtfhax.blank.bukkit;
 
-import info.insomniax.owhblank.vault.Permissions;
+import info.omgwtfhax.blank.vault.Permissions;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
